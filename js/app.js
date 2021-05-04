@@ -60,6 +60,9 @@ let app = {
     // je fais appel a la fonction permettant de générer ma colorBox
     app.generateColorBox(valueColors);
 
+    // je cible le body et lui attribut la nouvelle valeur
+    document.body.style.background = valueColors;
+
     app.reload();
   },
 
