@@ -9,8 +9,8 @@ let app = {
 
   init: function() {
     console.log(app.contentArea);
-    for (index in app.colors) {
-      app.generateColorBox(app.colors[index]);
+    for (index in cssColors) {
+      app.generateColorBox(cssColors[index]);
     }
     
     // je récupère tous les boxColor qui ont été créé dynamiquement
