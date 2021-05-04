@@ -52,6 +52,8 @@ let app = {
     let inputColors = document.getElementById('color');
     // je récupère la couleur soumise
     let valueColors = inputColors.value;
+    // on vide le champs après soumission
+    inputColors.value = '';
     console.log(typeof(valueColors));
 
     // je pousse ma nouvelle valeur dans le tableau colors
