@@ -25,22 +25,7 @@ let app = {
     let formColors = document.getElementById('form_submit');
     // je lui met un écouteur d'évènement de type submit
     formColors.addEventListener('submit', app.handleAddColors);
-  },
 
-  // OUI CA M'A RENDU CHEVRE CLICK() ALORS VOILA J'AI TRICHE A MORT !!!
-  // QUESTION A POSER COMMENT CA FONCTIONNE CE FICHU CLICK() xD
-  reload: function() {
-    // je récupère tous les boxColor qui ont été créé dynamiquement
-    let allBgSelector = document.querySelectorAll('.bg-color-selector');
-
-    // je leur met un écouteur d'évènement à chacun
-    for(let bgSelector of allBgSelector) {
-      bgSelector.addEventListener('click', app.handleChangeBackground);
-    }
-    // je récupère les données du formulaire à la soumission
-    let formColors = document.getElementById('form_submit');
-    // je lui met un écouteur d'évènement de type submit
-    formColors.addEventListener('submit', app.handleAddColors);
   },
 
   checkColors: function(valueColors) {
@@ -77,11 +62,6 @@ let app = {
 
       // je fais appel a la fonction permettant de générer ma colorBox
       app.generateColorBox(valueColors);
-
-      // je cible le body et lui attribut la nouvelle valeur
-      document.body.style.background = valueColors;
-
-      app.reload();
     }
   },
 
@@ -98,6 +78,7 @@ let app = {
     // on cible notre body et on modifie son style
     // on attribut à style la valeur de nos colorBox respectives
     document.body.style = valueBgSelector;
+    
   },
 
   generateColorBox: function(color) {
@@ -105,6 +86,10 @@ let app = {
     colorBox.className = 'bg-color-selector';
     colorBox.style.background = color;
     colorBox.innerText = color;
+
+    colorBox.addEventListener('click', app.handleChangeBackground);
+    colorBox.click();
+
     app.contentArea.appendChild(colorBox);
     return colorBox;
   }
