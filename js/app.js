@@ -43,29 +43,46 @@ let app = {
     formColors.addEventListener('submit', app.handleAddColors);
   },
 
+  checkColors: function(valueColors) {
+    
+    for (let index in cssColors) {
+
+      let color = cssColors[index];
+
+      if(valueColors === color) {
+        return true;
+      }    
+    }
+    return false;
+  },
+
   handleAddColors(evt) {
 
     // je stoppe l'envoi de données du formulaire
     evt.preventDefault();
 
-    // je cible mon input dans le DOM
-    let inputColors = document.getElementById('color');
-    // je récupère la couleur soumise
-    let valueColors = inputColors.value;
-    // on vide le champs après soumission
-    inputColors.value = '';
-    console.log(typeof(valueColors));
+      // je cible mon input dans le DOM
+      let inputColors = document.getElementById('color');
+      // je récupère la couleur soumise
+      let valueColors = inputColors.value;
+      // on vide le champs après soumission
+      inputColors.value = '';
 
-    // je pousse ma nouvelle valeur dans le tableau colors
-    app.colors.push(valueColors);
+    if(app.checkColors(valueColors) === true) {
 
-    // je fais appel a la fonction permettant de générer ma colorBox
-    app.generateColorBox(valueColors);
+      console.log(typeof(valueColors));
 
-    // je cible le body et lui attribut la nouvelle valeur
-    document.body.style.background = valueColors;
+      // je pousse ma nouvelle valeur dans le tableau colors
+      app.colors.push(valueColors);
 
-    app.reload();
+      // je fais appel a la fonction permettant de générer ma colorBox
+      app.generateColorBox(valueColors);
+
+      // je cible le body et lui attribut la nouvelle valeur
+      document.body.style.background = valueColors;
+
+      app.reload();
+    }
   },
 
   // TODO fonction pour modifier le fond en fonction du colorBox sélectionné
